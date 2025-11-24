@@ -516,6 +516,131 @@
             color: var(--primary-color);
         }
 
+        .contact-actions {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-note {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border 0.3s ease, color 0.3s ease;
+        }
+        
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .contact-button > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-button svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        
+        .contact-button:hover {
+            background: linear-gradient(120deg, var(--primary-color), var(--accent-color));
+            border-color: transparent;
+            color: var(--bg-primary);
+            box-shadow: 0 12px 30px rgba(77, 171, 247, 0.45);
+            transform: translateY(-3px);
+        }
+        
+        .contact-button:hover::before {
+            opacity: 1;
+        }
+        
+        .wechat-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+        
+        .wechat-modal.open {
+            display: flex;
+        }
+        
+        .wechat-modal-content {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            max-width: 320px;
+            width: 100%;
+            position: relative;
+        }
+        
+        .wechat-modal-content h4 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        .wechat-modal-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .wechat-modal-content img {
+            width: 220px;
+            height: 220px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-color);
+        }
+
         /* --- 响应式媒体查询 (兼容多屏幕) --- */
         @media (max-width: 992px) {
             .hero-content h1 { font-size: 2.5rem; }
@@ -736,7 +861,6 @@
                     深圳市新方智联科技有限公司是一家以深厚技术为驱动力的综合性科技企业。
                 </p>
 				<p>
-                    我们致力于为客户提供一站式智能解决方案。
                     公司秉承<strong>创新、诚信、专业</strong>的理念，持续投入技术研发，助力各行业客户实现数字化转型与商业增长。
                 </p>
             </div>
@@ -745,17 +869,34 @@
 
     <footer id="contact">
         <div class="container">
+            <div class="contact-actions">
+                <button class="contact-button" id="wechat-contact">
+                    <svg viewBox="0 0 1024 1024" aria-hidden="true">
+                        <path d="M512 64C264.6 64 64 235.5 64 448c0 118.7 64.9 224.7 166.9 294.4l-43.5 157.8c-5.6 20.4 14.2 37.3 33.1 28.2L388 820.5c39.3 9.8 80.9 15.1 124 15.1 247.4 0 448-171.5 448-384S759.4 64 512 64zM352 448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+                    </svg>
+                    企业微信咨询
+                </button>
+            </div>
             <p class="credit-code">
-			地址：广东省深圳市罗湖区，
-                <a href="https://amr.sz.gov.cn/index.html" target="_blank">
-                    统一社会信用代码：91440300MAK1J6JK96
-                </a>
-            </p>
+                地址：广东省深圳市罗湖区，
+                    <a href="https://amr.sz.gov.cn/index.html" target="_blank">
+                        统一社会信用代码：91440300MAK1J6JK96
+                    </a>
+                </p>
 			<p>邮箱：<a href="mailto:we@xinfang.link">we@xinfang.link</a></p>
             <p>官网：<a href="https://www.xinfang.link" target="_blank">https://www.xinfang.link</a></p>
             <p style="margin-top: 10px;">&copy; 2025 深圳市新方智联科技有限公司</p>
         </div>
     </footer>
+    
+    <div class="wechat-modal" id="wechat-modal" aria-hidden="true">
+        <div class="wechat-modal-content">
+            <button class="modal-close" id="wechat-close" aria-label="关闭">✕</button>
+            <h4>专属顾问</h4>
+            <p>微信或企业微信扫码，获取技术咨询与服务支持。</p>
+            <img src="contact_me_qr.jpg" alt="企业微信二维码">
+        </div>
+    </div>
     
     <script>
         // 菜单切换功能
@@ -818,6 +959,31 @@
                 }
             }
         });
+        
+        // 企业微信弹窗
+        const wechatBtn = document.getElementById('wechat-contact');
+        const wechatModal = document.getElementById('wechat-modal');
+        const wechatClose = document.getElementById('wechat-close');
+        
+        if (wechatBtn && wechatModal && wechatClose) {
+            const toggleModal = (open) => {
+                wechatModal.classList.toggle('open', open);
+                wechatModal.setAttribute('aria-hidden', open ? 'false' : 'true');
+            };
+            
+            wechatBtn.addEventListener('click', () => toggleModal(true));
+            wechatClose.addEventListener('click', () => toggleModal(false));
+            wechatModal.addEventListener('click', (e) => {
+                if (e.target === wechatModal) {
+                    toggleModal(false);
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    toggleModal(false);
+                }
+            });
+        }
     </script>
 
 </body>
