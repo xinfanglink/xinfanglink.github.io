@@ -274,16 +274,27 @@
             font-weight: 300;
         }
 
-        .cta-button {
-            display: inline-block;
+        .cta-button,
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             margin-top: 1.5rem;
-            padding: 12px 30px;
-            background: var(--primary-color);
-            color: var(--bg-primary);
+            padding: 0 30px;
             border-radius: 30px;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(77, 171, 247, 0.4);
+            font-size: 1rem;
+            line-height: 1;
+            min-height: 52px;
+            vertical-align: middle;
             transition: all 0.3s;
+        }
+        
+        .cta-button {
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 15px rgba(77, 171, 247, 0.4);
         }
 
         .cta-button:hover {
@@ -530,19 +541,14 @@
         }
         
         .contact-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            border-radius: 999px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
+            border: none;
+            background: #07c160;
+            color: #ffffff;
             cursor: pointer;
-            font-weight: 600;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border 0.3s ease, color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(7, 193, 96, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
         }
         
         .contact-button::before {
@@ -567,10 +573,10 @@
         }
         
         .contact-button:hover {
-            background: linear-gradient(120deg, var(--primary-color), var(--accent-color));
-            border-color: transparent;
-            color: var(--bg-primary);
-            box-shadow: 0 12px 30px rgba(77, 171, 247, 0.45);
+            background: #05a650;
+            border-color: #05a650;
+            color: #ffffff;
+            box-shadow: 0 12px 30px rgba(7, 193, 96, 0.45);
             transform: translateY(-3px);
         }
         
@@ -829,6 +835,12 @@
             </div>
             <h1>深圳市新方智联科技有限公司</h1>
             <p>融合科技，驱动智能未来。我们是您值得信赖的数字化转型伙伴。</p>
+            <a href="javascript:void(0)" class="contact-button" id="wechat-contact" role="button">
+                <svg viewBox="0 0 1024 1024" aria-hidden="true">
+                    <path d="M512 64C264.6 64 64 235.5 64 448c0 118.7 64.9 224.7 166.9 294.4l-43.5 157.8c-5.6 20.4 14.2 37.3 33.1 28.2L388 820.5c39.3 9.8 80.9 15.1 124 15.1 247.4 0 448-171.5 448-384S759.4 64 512 64zM352 448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+                </svg>
+                企业微信咨询
+            </a>
             <a href="#business" class="cta-button">探索我们的服务 &darr;</a>
         </div>
     </section>
@@ -869,14 +881,6 @@
 
     <footer id="contact">
         <div class="container">
-            <div class="contact-actions">
-                <button class="contact-button" id="wechat-contact">
-                    <svg viewBox="0 0 1024 1024" aria-hidden="true">
-                        <path d="M512 64C264.6 64 64 235.5 64 448c0 118.7 64.9 224.7 166.9 294.4l-43.5 157.8c-5.6 20.4 14.2 37.3 33.1 28.2L388 820.5c39.3 9.8 80.9 15.1 124 15.1 247.4 0 448-171.5 448-384S759.4 64 512 64zM352 448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
-                    </svg>
-                    企业微信咨询
-                </button>
-            </div>
             <p class="credit-code">
                 地址：广东省深圳市罗湖区，
                     <a href="https://amr.sz.gov.cn/index.html" target="_blank">
