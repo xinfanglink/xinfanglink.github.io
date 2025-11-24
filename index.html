@@ -3,43 +3,822 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深圳市新方智联科技有限公司</title>
+    <title>新方智联 | 融合科技，驱动智能未来</title>
+    <meta name="description" content="深圳市新方智联科技有限公司官方主页，专注于人工智能、软件开发、物联网、系统集成与数字创意服务。">
+    <!-- 更新favicon，与深色模式Logo保持一致 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%2300d4ff' stroke-width='5'/><circle cx='50' cy='10' r='5' fill='%2300d4ff'/><circle cx='90' cy='50' r='5' fill='%2300d4ff'/><circle cx='50' cy='90' r='5' fill='%2300d4ff'/><circle cx='10' cy='50' r='5' fill='%2300d4ff'/></svg>">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* --- CSS变量定义 --- */
+        :root {
+            /* 深色主题变量 - 默认 */
+            --primary-color: #4dabf7;
+            --accent-color: #339af0;
+            --text-primary: #e9ecef;
+            --text-secondary: #adb5bd;
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-card: #2d2d2d;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --border-color: #444;
+            --white: #f8f9fa;
+            --hero-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --footer-bg: #0d1117;
+        }
+
+        /* 浅色主题变量 */
+        [data-theme="light"] {
+            --primary-color: #004d99;
+            --accent-color: #007bff;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --bg-primary: #f7f7f7;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --border-color: #e0e0e0;
+            --white: #333;
+            --hero-bg: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            --footer-bg: #2b3a4a;
+        }
+
+        /* --- 全局与基础设置 --- */
+        * {
             margin: 0;
-            background-color: #f4f6f9;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a { 
+            text-decoration: none; 
+            color: inherit; 
+            transition: 0.3s; 
+        }
+        
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 导航栏 --- */
+        header {
+            background: var(--bg-secondary);
+            box-shadow: 0 2px 10px var(--shadow-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        /* 导航栏Logo样式 - 更新为深色模式风格 */
+        .nav-logo {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-ring-outer {
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+        }
+        
+        .nav-ring-inner {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            background: conic-gradient(
+                from 0deg,
+                rgba(0, 82, 255, 0.8),
+                rgba(106, 17, 203, 0.8),
+                rgba(255, 107, 107, 0.8),
+                rgba(0, 82, 255, 0.8)
+            );
+        }
+        
+        .nav-ring-inner::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            z-index: 1;
+        }
+        
+        .nav-data-nodes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        
+        .nav-node {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00d4ff;
+            border-radius: 50%;
+            box-shadow: 0 0 4px #00d4ff;
+            transform: translate(-50%, -50%);
+        }
+        
+        .nav-node:nth-child(1) { top: 10%; left: 50%; }
+        .nav-node:nth-child(2) { top: 50%; left: 90%; }
+        .nav-node:nth-child(3) { top: 90%; left: 50%; }
+        .nav-node:nth-child(4) { top: 50%; left: 10%; }
+
+        /* 桌面端导航样式 */
+        .nav-links { 
+            display: flex; 
+            align-items: center;
+        }
+        
+        .nav-links a {
+            margin-left: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover { 
+            color: var(--primary-color); 
+        }
+
+        /* 菜单切换按钮（默认隐藏） */
+        .menu-toggle {
+            display: none; 
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-color);
+            padding: 0;
+        }
+
+        /* 主题切换按钮 */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: transform 0.3s;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="light"] .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Hero 区域 (首屏) --- */
+        .hero {
+            min-height: 100vh;
+            background: var(--hero-bg);
+            display: flex;
+            align-items: center;
             text-align: center;
-            color: #333;
+            padding: 90px 0 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .content {
-            padding: 40px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(77, 171, 247, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(51, 154, 240, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-logo {
+            margin-bottom: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            text-shadow: 0 0 10px rgba(77, 171, 247, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(77, 171, 247, 0.4);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(77, 171, 247, 0.6);
+            background: var(--accent-color);
+        }
+
+        /* --- 深色模式Logo样式 (首页大Logo) --- */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .ring-outer {
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+        
+        .ring-inner {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            background: conic-gradient(
+                from 0deg,
+                rgba(0, 82, 255, 0.8),
+                rgba(106, 17, 203, 0.8),
+                rgba(255, 107, 107, 0.8),
+                rgba(0, 82, 255, 0.8)
+            );
+        }
+        
+        .ring-inner::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            z-index: 1;
+        }
+        
+        .data-nodes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        
+        .node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00d4ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00d4ff;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s infinite;
+        }
+        
+        .node:nth-child(1) { top: 10%; left: 50%; }
+        .node:nth-child(2) { top: 50%; left: 90%; }
+        .node:nth-child(3) { top: 90%; left: 50%; }
+        .node:nth-child(4) { top: 50%; left: 10%; }
+        .node:nth-child(5) { top: 20%; left: 20%; }
+        .node:nth-child(6) { top: 20%; left: 80%; }
+        .node:nth-child(7) { top: 80%; left: 20%; }
+        .node:nth-child(8) { top: 80%; left: 80%; }
+        
+        /* Logo 动画效果 */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        .logo-text {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+        
+        .logo-text-en {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            color: var(--text-secondary);
+        }
+
+        /* --- 公共 Section 样式 --- */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+        }
+
+        /* --- 核心业务 (使用 CSS Grid 实现响应式布局) --- */
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .business-card {
+            background: var(--bg-card);
+            padding: 30px;
             border-radius: 10px;
-            background: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px var(--shadow-color);
+            border-left: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(77, 171, 247, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .business-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .business-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        h1 {
-            color: #0056b3;
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
+        .business-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
         }
 
-        p {
-            font-size: 1.2em;
-            color: #666;
+        .business-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- 关于我们 --- */
+        #about {
+            background-color: var(--bg-secondary);
+        }
+        
+        .about-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .about-content strong { 
+            color: var(--white); 
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            background: var(--footer-bg); 
+            color: var(--text-secondary);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--primary-color);
+        }
+        
+        .credit-code {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .credit-code a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .credit-code a:hover {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+
+        /* --- 响应式媒体查询 (兼容多屏幕) --- */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .section { padding: 60px 0; }
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 1.1rem; }
+            
+            /* 显示汉堡菜单按钮 */
+            .menu-toggle { display: block; } 
+
+            /* 隐藏并重置桌面端导航样式 */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                box-shadow: 0 5px 10px var(--shadow-color);
+                padding: 10px 0;
+            }
+            
+            .nav-links a {
+                margin: 5px 20px;
+                text-align: left;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            /* 菜单打开时显示 */
+            .nav-links.open {
+                display: flex;
+            }
+            
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            
+            /* 移动端业务卡片变单列 */
+            .business-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+            
+            /* 移动端Logo调整 - 使用transform缩放保持比例 */
+            .logo-container {
+                width: 200px;
+                height: 200px;
+                margin-top: 20px;
+                transform: scale(0.8);
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            
+            .logo-text-en {
+                font-size: 0.75rem;
+            }
+            
+            /* 移动端导航栏Logo调整 */
+            .nav-logo {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .nav-ring-outer {
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+            }
+            
+            .nav-ring-inner {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+            }
+            
+            .nav-ring-inner::before {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+            
+            .nav-node {
+                width: 3px;
+                height: 3px;
+            }
+            
+            /* 移动端Hero区域调整，确保Logo不被遮挡 */
+            .hero {
+                padding: 100px 0 40px;
+                min-height: calc(100vh - 70px);
+            }
+            
+            .hero-logo {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 110px 0 30px;
+            }
+            
+            /* 小屏幕Logo调整 - 使用transform缩放保持比例 */
+            .logo-container {
+                transform: scale(0.7);
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .logo-text-en {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* 特别小的屏幕 */
+        @media (max-width: 360px) {
+            .logo-container {
+                transform: scale(0.6);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>深圳市新方智联科技有限公司</h1>
-        <p>欢迎访问！</p>
-    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="nav-logo">
+                        <div class="nav-ring-outer">
+                            <div class="nav-ring-inner">
+                                <div class="nav-data-nodes">
+                                    <div class="nav-node"></div>
+                                    <div class="nav-node"></div>
+                                    <div class="nav-node"></div>
+                                    <div class="nav-node"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    新方智联
+                </div>
+                <button class="menu-toggle" id="menu-toggle">☰</button>
+                
+                <div class="nav-links" id="nav-links">
+                    <a href="#home">首页</a>
+                    <a href="#business">核心业务</a>
+                    <a href="#about">关于我们</a>
+                    <a href="#contact">联系方式</a>
+                    <button class="theme-toggle" id="theme-toggle" title="切换浅色模式">🌙</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-logo">
+                <div class="logo-container">
+                    <div class="ring-outer">
+                        <div class="ring-inner">
+                            <div class="data-nodes">
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1>深圳市新方智联科技有限公司</h1>
+            <p>融合科技，驱动智能未来。我们是您值得信赖的数字化转型伙伴。</p>
+            <a href="#business" class="cta-button">探索我们的服务 &darr;</a>
+        </div>
+    </section>
+
+    <section id="business" class="section">
+        <div class="container">
+            <h2 class="section-title">核心业务</h2>
+            <p class="section-subtitle">聚焦于软件系统和人工智能两大核心领域，提供深度技术服务。</p>
+            <div class="business-grid">
+                
+                <div class="business-card">
+                    <h3>软件系统与信息服务</h3>
+                    <p>提供企业级计算机系统服务、全流程软件开发（包括外包）、数字文化创意软件开发、信息系统集成与运行维护，助力企业高效运营。</p>
+                </div>
+
+                <div class="business-card">
+                    <h3>人工智能与数据智能</h3>
+                    <p>涵盖AI理论与算法、基础与应用软件开发、AI硬件销售、人工智能公共服务平台建设，以及大数据处理、互联网数据服务与物联网技术研发。</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section" style="padding-bottom: 50px;">
+        <div class="container">
+            <h2 class="section-title">关于我们</h2>
+            <div class="about-content">
+                <p>
+                    深圳市新方智联科技有限公司是一家以深厚技术为驱动力的综合性科技企业。
+                </p>
+				<p>
+                    我们致力于为客户提供一站式智能解决方案。
+                    公司秉承<strong>创新、诚信、专业</strong>的理念，持续投入技术研发，助力各行业客户实现数字化转型与商业增长。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <p class="credit-code">
+			地址：广东省深圳市罗湖区，
+                <a href="https://amr.sz.gov.cn/index.html" target="_blank">
+                    统一社会信用代码：91440300MAK1J6JK96
+                </a>
+            </p>
+			<p>邮箱：<a href="mailto:we@xinfang.link">we@xinfang.link</a></p>
+            <p>官网：<a href="https://www.xinfang.link" target="_blank">https://www.xinfang.link</a></p>
+            <p style="margin-top: 10px;">&copy; 2025 深圳市新方智联科技有限公司</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 菜单切换功能
+        document.getElementById('menu-toggle').onclick = function() {
+            var navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('open');
+        };
+        
+        // 点击菜单项后自动关闭菜单 (优化移动端体验)
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('nav-links').classList.remove('open');
+            });
+        });
+        
+        // 主题切换功能
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // 检查本地存储的主题偏好
+        const currentTheme = localStorage.getItem('theme');
+        
+        // 根据系统偏好或本地存储设置初始主题
+        if (currentTheme === 'light' || (!currentTheme && !prefersDarkScheme.matches)) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeToggle.textContent = '☀️';
+            themeToggle.title = '切换深色模式';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '🌙';
+            themeToggle.title = '切换浅色模式';
+        }
+        
+        // 切换主题
+        themeToggle.addEventListener('click', function() {
+            if (document.documentElement.getAttribute('data-theme') === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '🌙';
+                themeToggle.title = '切换浅色模式';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '☀️';
+                themeToggle.title = '切换深色模式';
+            }
+        });
+        
+        // 监听系统主题变化
+        prefersDarkScheme.addEventListener('change', function(e) {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.textContent = '🌙';
+                    themeToggle.title = '切换浅色模式';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    themeToggle.textContent = '☀️';
+                    themeToggle.title = '切换深色模式';
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
