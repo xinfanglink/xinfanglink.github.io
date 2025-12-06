@@ -512,8 +512,8 @@
         }
         
         .credit-code {
-            margin-top: 15px;
-            font-size: 0.8rem;
+            margin-top: 12px;
+            font-size: 0.9rem;
             color: #6c757d;
         }
         
@@ -569,6 +569,12 @@
         .contact-button svg {
             width: 18px;
             height: 18px;
+            fill: currentColor;
+        }
+
+        .contact-a svg {
+            width: 16px;
+            height: 16px;
             fill: currentColor;
         }
         
@@ -882,20 +888,32 @@
     <footer id="contact">
         <div class="container">
             <p class="credit-code">
-                地址：广东省深圳市罗湖区，
-                    <a href="https://amr.sz.gov.cn/index.html" target="_blank">
-                        统一社会信用代码：91440300MAK1J6JK96
-                    </a>
-                </p>
-			<p>邮箱：<a href="mailto:we@xinfang.link">we@xinfang.link</a></p>
-            <p>
+                地址：广东省深圳市罗湖区
+            </p>
+			<p class="credit-code">
+                <a href="javascript:void(0)" class="contact-a" id="wechat-contact-a" style="padding-right: 10px;">
+                    微信咨询
+                    <svg viewBox="0 0 1024 1024" aria-hidden="true">
+                        <path d="M512 64C264.6 64 64 235.5 64 448c0 118.7 64.9 224.7 166.9 294.4l-43.5 157.8c-5.6 20.4 14.2 37.3 33.1 28.2L388 820.5c39.3 9.8 80.9 15.1 124 15.1 247.4 0 448-171.5 448-384S759.4 64 512 64zM352 448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm160 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+                    </svg>
+                </a>
+
+                邮箱：<a href="mailto:we@xinfang.link">we@xinfang.link</a>
+                
+            </p>
+            <p class="credit-code">
                 官网：<a href="https://www.xinfang.link" target="_blank">https://www.xinfang.link</a>
             </p>
-            <p>
+            <p class="credit-code">
                 ICP备案号：<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2025503215号-1</a>
             </p>
             
-            <p style="margin-top: 10px;">&copy; 2025 深圳市新方智联科技有限公司</p>
+            <p class="credit-code" style="margin-top: 10px;">
+                &copy; 2025 深圳市新方智联科技有限公司
+                <a href="https://amr.sz.gov.cn/index.html" target="_blank">
+                    统一社会信用代码：91440300MAK1J6JK96
+                </a>
+            </p>
         </div>
     </footer>
     
@@ -972,6 +990,7 @@
         
         // 企业微信弹窗
         const wechatBtn = document.getElementById('wechat-contact');
+        const wechatA = document.getElementById('wechat-contact-a');
         const wechatModal = document.getElementById('wechat-modal');
         const wechatClose = document.getElementById('wechat-close');
         
@@ -982,6 +1001,7 @@
             };
             
             wechatBtn.addEventListener('click', () => toggleModal(true));
+            wechatA.addEventListener('click', () => toggleModal(true));
             wechatClose.addEventListener('click', () => toggleModal(false));
             wechatModal.addEventListener('click', (e) => {
                 if (e.target === wechatModal) {
